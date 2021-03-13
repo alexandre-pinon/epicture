@@ -1,6 +1,9 @@
 import {StyleSheet} from 'react-native';
 
 export const style = StyleSheet.create({
+  imageTitle: {
+    fontSize: 20,
+  },
   favoriteButtonContainer: {
     flexDirection: 'row',
   },

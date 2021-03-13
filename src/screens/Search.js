@@ -5,10 +5,6 @@ import {ScreenContainer} from 'react-native-screens';
 const Search = ({navigation}) => (
   <ScreenContainer>
     <Text>Search Screen</Text>
-    <Button
-      title="Search 2"
-      onPress={() => navigation.push('Search2', {name: 'Search 2'})}
-    />
   </ScreenContainer>
 );
 

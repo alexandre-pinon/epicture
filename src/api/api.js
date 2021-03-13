@@ -1,13 +1,11 @@
-const rootUrl = 'https://api.imgur.com/3/gallery/t/';
-const CLIENT_ID = '749db65a791c1e8';
+import Config from 'react-native-config';
 
-exports.get = (url) => {
-  return fetch(rootUrl + url, {
+exports.get = (query) => {
+  return fetch(`${Config.API_ROOT_URL}/gallery/search?q=${query}`, {
     headers: {
-      Authorization: `Client-ID ${CLIENT_ID}`,
+      Authorization: `Client-ID ${Config.CLIENT_ID}`,
     },
   }).then((response) => {
-    console.log(response, `Client-ID ${CLIENT_ID}`);
     return response.json();
   });
 };
