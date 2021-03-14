@@ -68,6 +68,7 @@ export const style = StyleSheet.create({
   button: {
     marginRight: 20,
     marginTop: 15,
+    marginBottom: 15,
     padding: 15,
     paddingLeft: 30,
     paddingRight: 30,

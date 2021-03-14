@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
-  TouchableHighlight,
   Image,
   Dimensions,
   FlatList,
@@ -44,11 +43,14 @@ const ViewImages = ({route}) => {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const response = await API.get(route.params.category);
+      const response = await API.get({
+        type: 'search',
+        query: route.params.category,
+      });
       setData(response.data);
       setLoading(false);
     } catch (error) {
-      console.log('error: ', error);
+      console.log({error});
     }
   };
 

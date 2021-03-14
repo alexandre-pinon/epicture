@@ -19,10 +19,15 @@ const config = {
   },
 };
 
-const requestLogin = async () => {
+const requestLogin = async (loginFunc) => {
   try {
     const result = await authorize(config);
-    console.log({result});
+    const user = {
+      id: result.tokenAdditionalParameters.account_id,
+      name: result.tokenAdditionalParameters.account_username,
+      accessToken: result.accessToken,
+    };
+    loginFunc(user);
   } catch (error) {
     console.log({error});
   }
@@ -33,7 +38,7 @@ const Login = ({navigation}) => {
   return (
     <ScreenContainer>
       <Text>Login Screen</Text>
-      <Button title="Login" onPress={() => requestLogin()} />
+      <Button title="Login" onPress={() => requestLogin(Login)} />
       <Button title="Register" onPress={() => navigation.push('Register')} />
     </ScreenContainer>
   );
