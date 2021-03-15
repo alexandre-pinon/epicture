@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, Text, View, TouchableHighlight, TextInput} from 'react-native';
+import {Text, View, TouchableHighlight, TextInput} from 'react-native';
 import {ScreenContainer} from 'react-native-screens';
 import {launchImageLibrary} from 'react-native-image-picker';
 

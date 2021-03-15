@@ -5,7 +5,6 @@ import {
   TextInput,
   TouchableHighlight,
   ScrollView,
-  Button,
 } from 'react-native';
 import {ScreenContainer} from 'react-native-screens';
 import {AuthContext} from '../context/context';
@@ -102,34 +101,3 @@ const Home = ({navigation, route}) => {
 };
 
 export default Home;
-
-// import React from 'react';
-// import {useContext} from 'react';
-// import {Button, Text} from 'react-native';
-// import {ScreenContainer} from 'react-native-screens';
-// import {AuthContext} from '../context/context';
-
-// const Home = ({navigation}) => {
-//   const {Logout} = useContext(AuthContext);
-
-//   return (
-//     <ScreenContainer>
-//       <Text>Home Screen</Text>
-//       <Button
-//         title="React Native by Example"
-//         onPress={() =>
-//           navigation.push('Details', {name: 'React Native by Example'})
-//         }
-//       />
-//       <Button
-//         title="React Native School"
-//         onPress={() =>
-//           navigation.push('Details', {name: 'React Native School'})
-//         }
-//       />
-//       <Button title="Logout" onPress={() => Logout()} />
-//     </ScreenContainer>
-//   );
-// };
-
-// export default Home;

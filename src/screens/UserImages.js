@@ -1,4 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useState,
+} from 'react';
 import {
   View,
   Text,
@@ -7,8 +12,7 @@ import {
   FlatList,
   SafeAreaView,
 } from 'react-native';
-import {ScreenContainer} from 'react-native-screens';
-import {Header} from 'react-native-elements';
+// import {useIsFocused} from '@react-navigation/native';
 import API from '../api/api';
 import {style} from '../styles/style';
 
@@ -19,6 +23,11 @@ const UserImages = ({route}) => {
   const [loading, setLoading] = useState(false);
   const [images, setImages] = useState([]);
   const [user] = useState(route.params.user);
+  // const isFocused = useIsFocused();
+
+  // useEffect(() => {
+  //   console.log({isFocused});
+  // }, [isFocused]);
 
   useEffect(() => {
     fetchData();
@@ -76,17 +85,6 @@ const UserImages = ({route}) => {
 
   return (
     <View style={style.container}>
-      <Header
-        centerComponent={{
-          text: 'Your images',
-          style: style.headerText,
-        }}
-        rightComponent={{
-          text: 'Refresh',
-          style: style.headerText,
-          onPress: () => fetchData(),
-        }}
-      />
       <View style={style.container}>
         <SafeAreaView style={style.container}>{images}</SafeAreaView>
       </View>

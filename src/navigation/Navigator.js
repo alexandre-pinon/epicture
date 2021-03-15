@@ -1,8 +1,10 @@
 import React, {useEffect, useState, useMemo} from 'react';
+import {TouchableHighlight} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 // import '@react-navigation/drawer';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import {AuthContext} from '../context/context';
 import UserImages from '../screens/UserImages';
@@ -12,8 +14,9 @@ import Login from '../screens/Login';
 import Register from '../screens/Register';
 import ViewImages from '../screens/ViewImages';
 import UploadImages from '../screens/UploadImages';
+import {style} from '../styles/style';
 
-const Tabs = createBottomTabNavigator();
+const Tabs = createMaterialBottomTabNavigator();
 const RootStack = createStackNavigator();
 const AuthStack = createStackNavigator();
 const HomeStack = createStackNavigator();
@@ -26,35 +29,51 @@ const RootStackScreen = ({user}) => (
       <RootStack.Screen
         name="App"
         component={AppScreen}
-        options={{animationEnabled: false}}
         initialParams={{user}}
       />
     ) : (
-      <RootStack.Screen
-        name="Auth"
-        component={AuthStackScreen}
-        options={{animationEnabled: false}}
-      />
+      <RootStack.Screen name="Auth" component={AuthStackScreen} />
     )}
   </RootStack.Navigator>
 );
 
 const AppScreen = ({route}) => (
-  <Tabs.Navigator>
+  <Tabs.Navigator initialRouteName="Home" activeColor="#fff" shifting={true}>
     <Tabs.Screen
       name="Home"
       component={HomeStackScreen}
       initialParams={{user: route.params.user}}
+      options={{
+        tabBarLabel: 'Home',
+        tabBarColor: '#009387',
+        tabBarIcon: ({color}) => {
+          return <Icon name="ios-home" color={color} size={26} />;
+        },
+      }}
     />
     <Tabs.Screen
       name="Your images"
       component={UserImagesStackScreen}
       initialParams={{user: route.params.user}}
+      options={{
+        tabBarLabel: 'Your images',
+        tabBarColor: '#1f65ff',
+        tabBarIcon: ({color}) => (
+          <Icon name="ios-image" color={color} size={26} />
+        ),
+      }}
     />
     <Tabs.Screen
       name="Upload images"
       component={UploadImagesStackScreen}
       initialParams={{user: route.params.user}}
+      options={{
+        tabBarLabel: 'Upload images',
+        tabBarColor: '#694fad',
+        tabBarIcon: ({color}) => (
+          <Icon name="cloud-upload" color={color} size={26} />
+        ),
+      }}
     />
   </Tabs.Navigator>
 );
@@ -67,7 +86,16 @@ const AuthStackScreen = () => (
 );
 
 const HomeStackScreen = ({route}) => (
-  <HomeStack.Navigator>
+  <HomeStack.Navigator
+    screenOptions={{
+      headerStyle: {
+        backgroundColor: '#009387',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    }}>
     <HomeStack.Screen
       name="Home"
       component={Home}
@@ -81,18 +109,53 @@ const HomeStackScreen = ({route}) => (
   </HomeStack.Navigator>
 );
 
-const UserImagesStackScreen = ({route}) => (
-  <UserImagesStack.Navigator headerMode="none">
-    <UserImagesStack.Screen
-      name="Your images"
-      component={UserImages}
-      initialParams={{user: route.params.user}}
-    />
-  </UserImagesStack.Navigator>
-);
+const UserImagesStackScreen = ({route, navigation}) => {
+  return (
+    <UserImagesStack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: '#1f65ff',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+        // headerRight: () => (
+        //   <TouchableHighlight
+        //     onPress={() => {
+        //       console.log({refresh});
+        //       setRefresh(!refresh);
+        //       navigation.navigate('Your images', {refresh});
+        //     }}>
+        //     <Icon
+        //       name="ios-reload"
+        //       color="#fff"
+        //       size={26}
+        //       style={{marginRight: 20}}
+        //     />
+        //   </TouchableHighlight>
+        // ),
+      }}>
+      <UserImagesStack.Screen
+        name="Your images"
+        component={UserImages}
+        initialParams={{user: route.params.user}}
+      />
+    </UserImagesStack.Navigator>
+  );
+};
 
 const UploadImagesStackScreen = ({route}) => (
-  <UploadImagesStack.Navigator>
+  <UploadImagesStack.Navigator
+    screenOptions={{
+      headerStyle: {
+        backgroundColor: '#694fad',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    }}>
     <UploadImagesStack.Screen
       name="Upload images"
       component={UploadImages}
