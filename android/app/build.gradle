@@ -190,6 +190,7 @@ android {
 dependencies {
     compile project(':react-native-config')
     compile project(':react-native-app-auth')
+    compile project(':react-native-image-picker')
     compile project(':realm')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     //noinspection GradleDynamicVersion

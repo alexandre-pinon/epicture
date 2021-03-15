@@ -8,6 +8,7 @@ import {
   SafeAreaView,
 } from 'react-native';
 import {ScreenContainer} from 'react-native-screens';
+import {Header} from 'react-native-elements';
 import API from '../api/api';
 import {style} from '../styles/style';
 
@@ -74,11 +75,22 @@ const UserImages = ({route}) => {
   };
 
   return (
-    <ScreenContainer style={style.container}>
+    <View style={style.container}>
+      <Header
+        centerComponent={{
+          text: 'Your images',
+          style: style.headerText,
+        }}
+        rightComponent={{
+          text: 'Refresh',
+          style: style.headerText,
+          onPress: () => fetchData(),
+        }}
+      />
       <View style={style.container}>
         <SafeAreaView style={style.container}>{images}</SafeAreaView>
       </View>
-    </ScreenContainer>
+    </View>
   );
 };
 

@@ -11,12 +11,14 @@ import Splash from '../screens/Splash';
 import Login from '../screens/Login';
 import Register from '../screens/Register';
 import ViewImages from '../screens/ViewImages';
+import UploadImages from '../screens/UploadImages';
 
-const AuthStack = createStackNavigator();
 const Tabs = createBottomTabNavigator();
+const RootStack = createStackNavigator();
+const AuthStack = createStackNavigator();
 const HomeStack = createStackNavigator();
 const UserImagesStack = createStackNavigator();
-const RootStack = createStackNavigator();
+const UploadImagesStack = createStackNavigator();
 
 const RootStackScreen = ({user}) => (
   <RootStack.Navigator headerMode="none">
@@ -49,6 +51,11 @@ const AppScreen = ({route}) => (
       component={UserImagesStackScreen}
       initialParams={{user: route.params.user}}
     />
+    <Tabs.Screen
+      name="Upload images"
+      component={UploadImagesStackScreen}
+      initialParams={{user: route.params.user}}
+    />
   </Tabs.Navigator>
 );
 
@@ -75,13 +82,23 @@ const HomeStackScreen = ({route}) => (
 );
 
 const UserImagesStackScreen = ({route}) => (
-  <UserImagesStack.Navigator>
+  <UserImagesStack.Navigator headerMode="none">
     <UserImagesStack.Screen
       name="Your images"
       component={UserImages}
       initialParams={{user: route.params.user}}
     />
   </UserImagesStack.Navigator>
+);
+
+const UploadImagesStackScreen = ({route}) => (
+  <UploadImagesStack.Navigator>
+    <UploadImagesStack.Screen
+      name="Upload images"
+      component={UploadImages}
+      initialParams={{user: route.params.user}}
+    />
+  </UploadImagesStack.Navigator>
 );
 
 const Navigator = () => {

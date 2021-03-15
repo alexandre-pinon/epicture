@@ -20,10 +20,14 @@
     "react-native": "0.63.4",
     "react-native-app-auth": "^6.2.0",
     "react-native-config": "^1.4.2",
+    "react-native-elements": "^3.3.1",
     "react-native-gesture-handler": "^1.10.3",
+    "react-native-image-picker": "^3.3.2",
     "react-native-reanimated": "^2.0.0",
     "react-native-safe-area-context": "^3.2.0",
     "react-native-screens": "^2.18.1",
+    "react-native-vector-icons": "^8.1.0",
+    "react-native-windows": "^0.63.24",
     "realm": "^10.2.0"
   },
   "devDependencies": {
