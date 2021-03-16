@@ -1,9 +1,8 @@
 import React, {useEffect, useState, useMemo} from 'react';
-import {TouchableHighlight} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
-import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+// import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs'; #JaiLeSeumTurboModuleError
 // import '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -15,6 +14,7 @@ import Login from '../screens/Login';
 import Register from '../screens/Register';
 import ViewImages from '../screens/ViewImages';
 import UploadImages from '../screens/UploadImages';
+import Favorites from '../screens/Favorites';
 import {style} from '../styles/style';
 
 const Tabs = createMaterialBottomTabNavigator();
@@ -23,6 +23,7 @@ const AuthStack = createStackNavigator();
 const HomeStack = createStackNavigator();
 const UserImagesStack = createStackNavigator();
 const UploadImagesStack = createStackNavigator();
+const FavoritesStack = createStackNavigator();
 
 const RootStackScreen = ({user}) => (
   <RootStack.Navigator headerMode="none">
@@ -73,6 +74,18 @@ const AppScreen = ({route}) => (
         tabBarColor: '#694fad',
         tabBarIcon: ({color}) => (
           <Icon name="cloud-upload" color={color} size={26} />
+        ),
+      }}
+    />
+    <Tabs.Screen
+      name="Favorites"
+      component={FavoritesStackScreen}
+      initialParams={{user: route.params.user}}
+      options={{
+        tabBarLabel: 'Favorites',
+        tabBarColor: '#ad0c0c',
+        tabBarIcon: ({color}) => (
+          <Icon name="ios-heart" color={color} size={26} />
         ),
       }}
     />
@@ -148,6 +161,25 @@ const UploadImagesStackScreen = ({route}) => (
       initialParams={{user: route.params.user}}
     />
   </UploadImagesStack.Navigator>
+);
+
+const FavoritesStackScreen = ({route}) => (
+  <FavoritesStack.Navigator
+    screenOptions={{
+      headerStyle: {
+        backgroundColor: '#ad0c0c',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    }}>
+    <FavoritesStack.Screen
+      name="Favorites"
+      component={Favorites}
+      initialParams={{user: route.params.user}}
+    />
+  </FavoritesStack.Navigator>
 );
 
 const Navigator = () => {

@@ -6,9 +6,10 @@ import {
   Dimensions,
   FlatList,
   SafeAreaView,
+  Modal,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-// import {useIsFocused} from '@react-navigation/native';
+import ImageViewer from 'react-native-image-zoom-viewer';
 import API from '../api/api';
 import {style} from '../styles/style';
 
