@@ -1,9 +1,4 @@
-import React, {
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useState,
-} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -12,24 +7,31 @@ import {
   FlatList,
   SafeAreaView,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 // import {useIsFocused} from '@react-navigation/native';
 import API from '../api/api';
 import {style} from '../styles/style';
 
 const windowWidth = Dimensions.get('window').width;
 
-const UserImages = ({route}) => {
+const UserImages = ({route, navigation}) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [images, setImages] = useState([]);
   const [user] = useState(route.params.user);
-  // const isFocused = useIsFocused();
-
-  // useEffect(() => {
-  //   console.log({isFocused});
-  // }, [isFocused]);
 
   useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <Icon
+          name="ios-reload"
+          color="#fff"
+          size={26}
+          style={{marginRight: 20}}
+          onPress={fetchData}
+        />
+      ),
+    });
     fetchData();
     // eslint-disable-next-line
   }, []);

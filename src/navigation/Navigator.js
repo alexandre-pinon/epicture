@@ -3,6 +3,7 @@ import {TouchableHighlight} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 // import '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -120,21 +121,6 @@ const UserImagesStackScreen = ({route, navigation}) => {
         headerTitleStyle: {
           fontWeight: 'bold',
         },
-        // headerRight: () => (
-        //   <TouchableHighlight
-        //     onPress={() => {
-        //       console.log({refresh});
-        //       setRefresh(!refresh);
-        //       navigation.navigate('Your images', {refresh});
-        //     }}>
-        //     <Icon
-        //       name="ios-reload"
-        //       color="#fff"
-        //       size={26}
-        //       style={{marginRight: 20}}
-        //     />
-        //   </TouchableHighlight>
-        // ),
       }}>
       <UserImagesStack.Screen
         name="Your images"
