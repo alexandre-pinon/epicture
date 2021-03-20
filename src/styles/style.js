@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 
 export const style = StyleSheet.create({
   imageTitle: {
@@ -34,6 +34,28 @@ export const style = StyleSheet.create({
   headerText: {
     color: '#fff',
     fontSize: 20,
+  },
+  imageHeadingContainer: {
+    alignItems: 'center',
+    position: 'absolute',
+    top: 80,
+    right: 0,
+    left: 0,
+  },
+  imageHeaderText: {
+    color: '#fff',
+    fontSize: 30,
+  },
+  imageFooterContainer: {
+    alignItems: 'center',
+    position: 'absolute',
+    bottom: 80,
+    right: 0,
+    left: 0,
+  },
+  imageFooterText: {
+    color: '#fff',
+    fontSize: 30,
   },
   container: {
     flex: 1,

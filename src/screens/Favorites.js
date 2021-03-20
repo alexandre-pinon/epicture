@@ -22,21 +22,7 @@ const Favorites = ({route, navigation}) => {
   const [images, setImages] = useState([]);
   const [modalImage, setModalImage] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  const [modalIndex, setModalIndex] = useState(0);
   const [user] = useState(route.params.user);
-
-  //   const imgs = [
-  //     {
-  //       url: 'https://images7.alphacoders.com/112/thumb-1920-1124248.png',
-  //       width: windowWidth,
-  //       height: windowWidth,
-  //     },
-  //     {
-  //       url: 'https://images7.alphacoders.com/112/thumb-1920-1124248.png',
-  //       width: windowWidth,
-  //       height: windowWidth,
-  //     },
-  //   ];
 
   useEffect(() => {
     navigation.setOptions({
@@ -46,7 +32,7 @@ const Favorites = ({route, navigation}) => {
           color="#fff"
           size={26}
           style={{marginRight: 20}}
-          onPress={openModal}
+          onPress={fetchData}
         />
       ),
     });
@@ -68,14 +54,6 @@ const Favorites = ({route, navigation}) => {
         />
       ),
     );
-    setModalImage(
-      !loading &&
-        data?.map((image) => ({
-          url: image.link,
-          width: windowWidth,
-          height: windowWidth,
-        })),
-    );
     // eslint-disable-next-line
   }, [loading]);
 
@@ -83,8 +61,9 @@ const Favorites = ({route, navigation}) => {
     try {
       setLoading(true);
       const response = await API.get({
-        type: 'userImages',
+        type: 'favorites',
         accessToken: user.accessToken,
+        username: user.name,
       });
       const filteredData = response.data.filter((image) =>
         image.link.match(/\.(jpg|png|gif)/g),
@@ -115,12 +94,45 @@ const Favorites = ({route, navigation}) => {
 
   const closeModal = () => setShowModal(false);
   const openModal = (image) => {
-    setModalImage([{url: image.link, width: windowWidth, height: windowWidth}]);
+    setModalImage([
+      {
+        url: image.link,
+        width: windowWidth,
+        height: windowWidth,
+        title: image.title,
+        favorite: image.favorite,
+        imageHash: image.id,
+      },
+    ]);
     setShowModal(true);
   };
-  const huhu = (ok) => {
-    console.log({ok});
-    setShowModal(true);
+
+  const imageHeader = () => {
+    return (
+      <View style={style.imageHeadingContainer}>
+        <Text style={style.imageHeaderText}>{modalImage[0].title}</Text>
+      </View>
+    );
+  };
+
+  const imageFooter = () => {
+    const iconType = modalImage[0].favorite ? 'ios-heart' : 'ios-heart-outline';
+    return (
+      <Icon name={iconType} color="#fff" size={50} onPress={handleFavorites} />
+    );
+  };
+
+  const handleFavorites = async () => {
+    try {
+      setModalImage([{...modalImage[0], favorite: !modalImage[0].favorite}]);
+      await API.post({
+        type: 'favorite',
+        accessToken: user.accessToken,
+        imageHash: modalImage[0].imageHash,
+      });
+    } catch (error) {
+      console.log({error});
+    }
   };
 
   return (
@@ -128,12 +140,15 @@ const Favorites = ({route, navigation}) => {
       <View style={style.container}>
         <SafeAreaView style={style.container}>{images}</SafeAreaView>
       </View>
-      <Modal visible={showModal} transparent={true} animationType={'fade'}>
+      <Modal visible={showModal} transparent={false} animationType={'fade'}>
         <ImageViewer
           imageUrls={modalImage}
           enableSwipeDown={true}
           onSwipeDown={closeModal}
-          index={modalIndex}
+          renderHeader={imageHeader}
+          renderFooter={imageFooter}
+          renderIndicator={() => null}
+          footerContainerStyle={style.imageFooterContainer}
         />
       </Modal>
     </View>
