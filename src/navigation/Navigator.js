@@ -15,7 +15,7 @@ import Register from '../screens/Register';
 import ViewImages from '../screens/ViewImages';
 import UploadImages from '../screens/UploadImages';
 import Favorites from '../screens/Favorites';
-import {style} from '../styles/style';
+import {theme} from '../core/theme';
 
 const Tabs = createMaterialBottomTabNavigator();
 const RootStack = createStackNavigator();
@@ -93,7 +93,10 @@ const AppScreen = ({route}) => (
 );
 
 const AuthStackScreen = () => (
-  <AuthStack.Navigator>
+  <AuthStack.Navigator
+    screenOptions={{
+      headerShown: false,
+    }}>
     <AuthStack.Screen name="Login" component={Login} />
     <AuthStack.Screen name="Register" component={Register} />
   </AuthStack.Navigator>
@@ -103,9 +106,9 @@ const HomeStackScreen = ({route}) => (
   <HomeStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: '#009387',
+        backgroundColor: theme.colors.primary,
       },
-      headerTintColor: '#fff',
+      headerTintColor: theme.colors.text,
       headerTitleStyle: {
         fontWeight: 'bold',
       },

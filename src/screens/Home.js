@@ -1,16 +1,18 @@
-import React, {useContext, useState} from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableHighlight,
-  ScrollView,
-} from 'react-native';
+import React, {useContext, useState, useEffect} from 'react';
+import {View, Text, TouchableHighlight, ScrollView} from 'react-native';
 import {ScreenContainer} from 'react-native-screens';
-import {AuthContext} from '../context/context';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import Realm from 'realm';
 import _ from 'lodash';
+
+import {AuthContext} from '../context/context';
+import Background from '../components/Background';
+import Logo from '../components/Logo';
+import Header from '../components/Header';
+import Button from '../components/Button';
+import Paragraph from '../components/Paragraph';
+import TextInput from '../components/TextInput';
 import {style} from '../styles/style';
 
 const realm = new Realm({
@@ -24,6 +26,21 @@ const Home = ({navigation, route}) => {
   const [refresh, setRefresh] = useState(false);
   const {Logout} = useContext(AuthContext);
   const [user] = useState(route.params.user);
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <Icon
+          name="ios-exit-outline"
+          color="#fff"
+          size={26}
+          style={{marginRight: 20}}
+          onPress={Logout}
+        />
+      ),
+    });
+    // eslint-disable-next-line
+  }, []);
 
   const addItem = () => {
     if (input === '') return;
@@ -64,39 +81,24 @@ const Home = ({navigation, route}) => {
     );
   });
   return (
-    <ScreenContainer style={style.container}>
-      <View style={style.headingContainer}>
-        <Text style={style.heading}>Welcome {user.name} !</Text>
-      </View>
+    <Background>
+      <Header>Welcome {user.name} !</Header>
       <ScrollView style={style.mainContainer}>
         <TextInput
           value={input}
           onChangeText={(text) => setInput(text)}
-          style={style.input}
-          placeholder="What Do You Like?"
+          label="Search for an image !"
+          description="What do you like 🙃 ?"
         />
-        <View style={style.buttonContainer}>
-          <TouchableHighlight
-            underlayColor="#3f62aa"
-            style={[style.button]}
-            onPress={() => addItem()}>
-            <Text style={style.buttonText}>Add Item</Text>
-          </TouchableHighlight>
-        </View>
+        <Button mode="contained" onPress={addItem}>
+          Add item
+        </Button>
         <View style={style.favContainer}>
           <Text style={style.favorites}>FAVORITES</Text>
           {favorites}
         </View>
       </ScrollView>
-      <View style={style.buttonContainer}>
-        <TouchableHighlight
-          underlayColor="#3f62aa"
-          style={[style.button]}
-          onPress={() => Logout()}>
-          <Text style={style.buttonText}>Logout</Text>
-        </TouchableHighlight>
-      </View>
-    </ScreenContainer>
+    </Background>
   );
 };
 

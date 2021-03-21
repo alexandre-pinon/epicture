@@ -122,6 +122,7 @@ export const style = StyleSheet.create({
   },
   mainContainer: {
     flex: 1,
+    width: '100%',
   },
   closeButton: {
     height: 100,
