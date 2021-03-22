@@ -16,7 +16,6 @@ import API from '../api/api';
 import {style} from '../styles/style';
 import Background from '../components/Background';
 import SweetAlert from 'react-native-sweet-alert';
-import {theme} from '../core/theme';
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -93,9 +92,6 @@ const UserImages = ({route, navigation}) => {
   const renderItem = ({item}) => {
     return (
       <View>
-        {/* <View style={style.headingContainer}>
-          <Text style={style.heading}>{item.title || 'Untitled'}</Text>
-        </View> */}
         <TouchableHighlight onPress={() => openModal(item)}>
           <Image
             key={item.id}
@@ -149,7 +145,7 @@ const UserImages = ({route, navigation}) => {
           name={'ios-trash-outline'}
           color="#fff"
           size={40}
-          onPress={sweetAlert}
+          onPress={sweetAlertDelete}
           style={{
             position: 'absolute',
             left: 150,
@@ -160,7 +156,7 @@ const UserImages = ({route, navigation}) => {
           name={'image-edit-outline'}
           color="#fff"
           size={40}
-          onPress={handleFavorites}
+          onPress={editImage}
           style={{
             position: 'absolute',
             right: 150,
@@ -168,6 +164,11 @@ const UserImages = ({route, navigation}) => {
         />
       </View>
     );
+  };
+
+  const editImage = () => {
+    setShowModal(false);
+    navigation.push('Edit image', {image: modalImage[0]});
   };
 
   const handleFavorites = async () => {
@@ -183,7 +184,7 @@ const UserImages = ({route, navigation}) => {
     }
   };
 
-  const sweetAlert = () => {
+  const sweetAlertDelete = () => {
     SweetAlert.showAlertWithOptions(
       {
         title: 'Are you sure ?',

@@ -8,6 +8,7 @@ const searchTypeToUrlDict = (type, query, imageHash, username) => {
     favorite: `/image/${imageHash}/favorite`,
     favorites: `/account/${username}/favorites`,
     delete: `/image/${imageHash}`,
+    update: `/image/${imageHash}`,
   };
   return dict[type] ? dict[type] : ''; // Empty string if unknown type
 };

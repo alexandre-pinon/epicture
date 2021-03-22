@@ -14,6 +14,7 @@ import Login from '../screens/Login';
 import Register from '../screens/Register';
 import ViewImages from '../screens/ViewImages';
 import UploadImages from '../screens/UploadImages';
+import UpdateImage from '../screens/UpdateImage';
 import Favorites from '../screens/Favorites';
 import {theme} from '../core/theme';
 
@@ -126,7 +127,7 @@ const HomeStackScreen = ({route}) => (
   </HomeStack.Navigator>
 );
 
-const UserImagesStackScreen = ({route, navigation}) => {
+const UserImagesStackScreen = ({route}) => {
   return (
     <UserImagesStack.Navigator
       screenOptions={{
@@ -141,6 +142,11 @@ const UserImagesStackScreen = ({route, navigation}) => {
       <UserImagesStack.Screen
         name="Your images"
         component={UserImages}
+        initialParams={{user: route.params.user}}
+      />
+      <UserImagesStack.Screen
+        name="Edit image"
+        component={UpdateImage}
         initialParams={{user: route.params.user}}
       />
     </UserImagesStack.Navigator>
