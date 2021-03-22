@@ -22,7 +22,7 @@ $ npm run android
 
 ## Clicked on saved search:
 # ADD SRC TO IMG TAG
-<!--<img src="" width="200" height="400"><br>-->
+<img src="" width="200" height="400"><br>
 
 ## Upload page:
 <img src="https://i.imgur.com/U75Bd66.jpg" width="200" height="400"><br>
