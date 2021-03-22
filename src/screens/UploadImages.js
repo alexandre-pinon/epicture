@@ -1,10 +1,16 @@
 import React, {useState} from 'react';
-import {Text, View, TouchableHighlight, TextInput} from 'react-native';
+import {Text, View, TouchableHighlight} from 'react-native';
 import {ScreenContainer} from 'react-native-screens';
 import {launchImageLibrary} from 'react-native-image-picker';
 
 import API from '../api/api';
 
+import Background from '../components/Background';
+import Logo from '../components/Logo';
+import Header from '../components/Header';
+import Button from '../components/Button';
+import Paragraph from '../components/Paragraph';
+import TextInput from '../components/TextInput';
 import {style} from '../styles/style';
 
 const UploadImages = ({route}) => {
@@ -48,22 +54,16 @@ const UploadImages = ({route}) => {
   };
 
   return (
-    <ScreenContainer>
+    <Background>
       <TextInput
         value={input}
         onChangeText={(text) => setInput(text)}
-        style={style.input}
-        placeholder="Image Title"
+        label="Image Title"
       />
-      <View style={style.buttonContainer}>
-        <TouchableHighlight
-          underlayColor="#3f62aa"
-          style={[style.button]}
-          onPress={() => handlePicker()}>
-          <Text style={style.buttonText}>Pick a photo to upload!</Text>
-        </TouchableHighlight>
-      </View>
-    </ScreenContainer>
+      <Button mode="contained" onPress={handlePicker}>
+        Pick a photo to upload!
+      </Button>
+    </Background>
   );
 };
 

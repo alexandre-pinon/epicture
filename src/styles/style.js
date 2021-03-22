@@ -30,6 +30,7 @@ export const style = StyleSheet.create({
   heading: {
     fontSize: 20,
     marginTop: 20,
+    color: '#fff',
   },
   headerText: {
     color: '#fff',

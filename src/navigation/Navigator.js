@@ -47,7 +47,7 @@ const AppScreen = ({route}) => (
       initialParams={{user: route.params.user}}
       options={{
         tabBarLabel: 'Home',
-        tabBarColor: '#009387',
+        tabBarColor: theme.colors.primary,
         tabBarIcon: ({color}) => {
           return <Icon name="ios-home" color={color} size={26} />;
         },
@@ -59,7 +59,7 @@ const AppScreen = ({route}) => (
       initialParams={{user: route.params.user}}
       options={{
         tabBarLabel: 'Your images',
-        tabBarColor: '#1f65ff',
+        tabBarColor: theme.colors.secondary,
         tabBarIcon: ({color}) => (
           <Icon name="ios-image" color={color} size={26} />
         ),
@@ -71,7 +71,7 @@ const AppScreen = ({route}) => (
       initialParams={{user: route.params.user}}
       options={{
         tabBarLabel: 'Upload images',
-        tabBarColor: '#694fad',
+        tabBarColor: theme.colors.primary,
         tabBarIcon: ({color}) => (
           <Icon name="cloud-upload" color={color} size={26} />
         ),
@@ -83,7 +83,7 @@ const AppScreen = ({route}) => (
       initialParams={{user: route.params.user}}
       options={{
         tabBarLabel: 'Favorites',
-        tabBarColor: '#ad0c0c',
+        tabBarColor: theme.colors.secondary,
         tabBarIcon: ({color}) => (
           <Icon name="ios-heart" color={color} size={26} />
         ),
@@ -131,9 +131,9 @@ const UserImagesStackScreen = ({route, navigation}) => {
     <UserImagesStack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: '#1f65ff',
+          backgroundColor: theme.colors.secondary,
         },
-        headerTintColor: '#fff',
+        headerTintColor: theme.colors.text,
         headerTitleStyle: {
           fontWeight: 'bold',
         },
@@ -151,9 +151,9 @@ const UploadImagesStackScreen = ({route}) => (
   <UploadImagesStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: '#694fad',
+        backgroundColor: theme.colors.primary,
       },
-      headerTintColor: '#fff',
+      headerTintColor: theme.colors.text,
       headerTitleStyle: {
         fontWeight: 'bold',
       },
@@ -170,9 +170,9 @@ const FavoritesStackScreen = ({route}) => (
   <FavoritesStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: '#ad0c0c',
+        backgroundColor: theme.colors.secondary,
       },
-      headerTintColor: '#fff',
+      headerTintColor: theme.colors.text,
       headerTitleStyle: {
         fontWeight: 'bold',
       },

@@ -12,6 +12,7 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import ImageViewer from 'react-native-image-zoom-viewer';
 import API from '../api/api';
+import Background from '../components/Background';
 import {style} from '../styles/style';
 
 const windowWidth = Dimensions.get('window').width;
@@ -78,14 +79,19 @@ const Favorites = ({route, navigation}) => {
   const renderItem = ({item}) => {
     return (
       <View>
-        <View style={style.headingContainer}>
+        {/* <View style={style.headingContainer}>
           <Text style={style.heading}>{item.title || 'Untitled'}</Text>
-        </View>
+        </View> */}
         <TouchableHighlight onPress={() => openModal(item)}>
           <Image
             key={item.id}
             source={{uri: item.link}}
-            style={{width: windowWidth, height: windowWidth}}
+            style={{
+              width: 0.9 * windowWidth,
+              height: 0.9 * windowWidth,
+              marginBottom: 0.05 * windowWidth,
+              marginTop: 0.05 * windowWidth,
+            }}
           />
         </TouchableHighlight>
       </View>
@@ -136,10 +142,8 @@ const Favorites = ({route, navigation}) => {
   };
 
   return (
-    <View style={style.container}>
-      <View style={style.container}>
-        <SafeAreaView style={style.container}>{images}</SafeAreaView>
-      </View>
+    <Background>
+      <SafeAreaView>{images}</SafeAreaView>
       <Modal visible={showModal} transparent={false} animationType={'fade'}>
         <ImageViewer
           imageUrls={modalImage}
@@ -151,7 +155,7 @@ const Favorites = ({route, navigation}) => {
           footerContainerStyle={style.imageFooterContainer}
         />
       </Modal>
-    </View>
+    </Background>
   );
 };
 
