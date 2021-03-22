@@ -1,6 +1,6 @@
 # Epicture
 
-Made by Alexandre PINON & Mohammed BRAHMI.<br>
+Made by ストレモン .<br>
 The goal of this project is to use the Imgur API.<br>
 
 Written in [React-Native](https://reactnative.dev/).
