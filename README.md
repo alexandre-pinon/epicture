@@ -17,8 +17,17 @@ $ npm run android
 ```
 
 # Screenshots
-<img src="https://i.imgur.com/omAHyPD.jpg" width="200" height="400">
-<img src="https://i.imgur.com/U75Bd66.jpg" width="200" height="400">
-<img src="https://i.imgur.com/S7nT97r.jpg" width="200" height="400">
-<img src="https://i.imgur.com/lBXTMHc.jpg" width="200" height="400">
-<img src="https://i.imgur.com/6uR6uir.jpg" width="200" height="400">
+## Home page (after login):
+<img src="https://i.imgur.com/omAHyPD.jpg" width="200" height="400"><br>
+
+## Upload page:
+<img src="https://i.imgur.com/U75Bd66.jpg" width="200" height="400"><br>
+
+## Uploaded images:
+<img src="https://i.imgur.com/S7nT97r.jpg" width="200" height="400"><br>
+
+## After clicking on an uploaded image:
+<img src="https://i.imgur.com/lBXTMHc.jpg" width="200" height="400"><br>
+
+## Favorites:
+<img src="https://i.imgur.com/6uR6uir.jpg" width="200" height="400"><br>
