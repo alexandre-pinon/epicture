@@ -7,6 +7,7 @@ const searchTypeToUrlDict = (type, query, imageHash, username) => {
     upload: '/upload',
     favorite: `/image/${imageHash}/favorite`,
     favorites: `/account/${username}/favorites`,
+    delete: `/image/${imageHash}`,
   };
   return dict[type] ? dict[type] : ''; // Empty string if unknown type
 };
@@ -44,4 +45,8 @@ exports.get = (params) => {
 
 exports.post = (params) => {
   return commonImgurRequest({...params, method: 'POST'});
+};
+
+exports.delete = (params) => {
+  return commonImgurRequest({...params, method: 'DELETE'});
 };

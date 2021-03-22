@@ -9,11 +9,14 @@ import {
   Modal,
   TouchableHighlight,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Ionicon from 'react-native-vector-icons/Ionicons';
 import ImageViewer from 'react-native-image-zoom-viewer';
 import API from '../api/api';
 import {style} from '../styles/style';
 import Background from '../components/Background';
+import SweetAlert from 'react-native-sweet-alert';
+import {theme} from '../core/theme';
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -28,7 +31,7 @@ const UserImages = ({route, navigation}) => {
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <Icon
+        <Ionicon
           name="ios-reload"
           color="#fff"
           size={26}
@@ -135,7 +138,35 @@ const UserImages = ({route, navigation}) => {
   const imageFooter = () => {
     const iconType = modalImage[0].favorite ? 'ios-heart' : 'ios-heart-outline';
     return (
-      <Icon name={iconType} color="#fff" size={50} onPress={handleFavorites} />
+      <View>
+        <Ionicon
+          name={iconType}
+          color="#fff"
+          size={40}
+          onPress={handleFavorites}
+        />
+        <Ionicon
+          name={'ios-trash-outline'}
+          color="#fff"
+          size={40}
+          onPress={sweetAlert}
+          style={{
+            position: 'absolute',
+            left: 150,
+            color: 'red',
+          }}
+        />
+        <MaterialIcon
+          name={'image-edit-outline'}
+          color="#fff"
+          size={40}
+          onPress={handleFavorites}
+          style={{
+            position: 'absolute',
+            right: 150,
+          }}
+        />
+      </View>
     );
   };
 
@@ -150,6 +181,30 @@ const UserImages = ({route, navigation}) => {
     } catch (error) {
       console.log({error});
     }
+  };
+
+  const sweetAlert = () => {
+    SweetAlert.showAlertWithOptions(
+      {
+        title: 'Are you sure ?',
+        style: 'warning',
+        cancellable: true,
+      },
+      (callback) => {
+        if (callback === 'accepted') deleteImage();
+      },
+    );
+  };
+
+  const deleteImage = async () => {
+    console.log('DELETED');
+    await API.delete({
+      type: 'delete',
+      accessToken: user.accessToken,
+      imageHash: modalImage[0].imageHash,
+    });
+    closeModal();
+    fetchData();
   };
 
   return (
