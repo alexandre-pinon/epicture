@@ -15,6 +15,8 @@ import ImageViewer from 'react-native-image-zoom-viewer';
 import API from '../api/api';
 import {style} from '../styles/style';
 import Background from '../components/Background';
+import Button from '../components/Button';
+import TextInput from '../components/TextInput';
 import SweetAlert from 'react-native-sweet-alert';
 
 const windowWidth = Dimensions.get('window').width;
@@ -26,17 +28,29 @@ const UserImages = ({route, navigation}) => {
   const [modalImage, setModalImage] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [user] = useState(route.params.user);
+  const [showModal2, setShowModal2] = useState(false);
+  const [input, setInput] = useState('');
+  const [refreshImages, setRefreshImages] = useState(false);
 
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <Ionicon
-          name="ios-reload"
-          color="#fff"
-          size={26}
-          style={{marginRight: 20}}
-          onPress={fetchData}
-        />
+        <View style={{flexDirection: 'row'}}>
+          <MaterialIcon
+            name="filter-outline"
+            color="#fff"
+            size={30}
+            style={{marginRight: 20, marginLeft: 20}}
+            onPress={() => setShowModal2(true)}
+          />
+          <Ionicon
+            name="ios-reload"
+            color="#fff"
+            size={26}
+            style={{marginRight: 20, marginLeft: 20}}
+            onPress={fetchData}
+          />
+        </View>
       ),
     });
     fetchData();
@@ -59,6 +73,20 @@ const UserImages = ({route, navigation}) => {
     );
     // eslint-disable-next-line
   }, [loading]);
+
+  useEffect(() => {
+    if (refreshImages) {
+      setImages(
+        <FlatList
+          data={data}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+        />,
+      );
+    }
+    setRefreshImages(false);
+    // eslint-disable-next-line
+  }, [refreshImages]);
 
   const fetchData = async () => {
     try {
@@ -138,13 +166,13 @@ const UserImages = ({route, navigation}) => {
         <Ionicon
           name={iconType}
           color="#fff"
-          size={40}
+          size={30}
           onPress={handleFavorites}
         />
         <Ionicon
           name={'ios-trash-outline'}
           color="#fff"
-          size={40}
+          size={30}
           onPress={sweetAlertDelete}
           style={{
             position: 'absolute',
@@ -155,7 +183,7 @@ const UserImages = ({route, navigation}) => {
         <MaterialIcon
           name={'image-edit-outline'}
           color="#fff"
-          size={40}
+          size={30}
           onPress={editImage}
           style={{
             position: 'absolute',
@@ -169,6 +197,16 @@ const UserImages = ({route, navigation}) => {
   const editImage = () => {
     setShowModal(false);
     navigation.push('Edit image', {image: modalImage[0]});
+  };
+
+  const filterImages = () => {
+    const filteredData = data.filter((image) =>
+      image.title.toLowerCase().includes(input.toLowerCase()),
+    );
+    setData(filteredData);
+    setInput('');
+    setShowModal2(false);
+    setRefreshImages(true);
   };
 
   const handleFavorites = async () => {
@@ -221,6 +259,21 @@ const UserImages = ({route, navigation}) => {
           renderIndicator={() => null}
           footerContainerStyle={style.imageFooterContainer}
         />
+      </Modal>
+      <Modal visible={showModal2} animationType={'fade'}>
+        <Background>
+          <TextInput
+            value={input}
+            onChangeText={(text) => setInput(text)}
+            label="Filter"
+          />
+          <Button mode="contained" onPress={filterImages}>
+            Filter images by title
+          </Button>
+          <Button mode="contained" onPress={() => setShowModal2(false)}>
+            Close
+          </Button>
+        </Background>
       </Modal>
     </Background>
   );
