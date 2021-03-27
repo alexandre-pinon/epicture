@@ -6,6 +6,7 @@ import API from '../api/api';
 import Background from '../components/Background';
 import Button from '../components/Button';
 import TextInput from '../components/TextInput';
+import Logo from '../components/Logo';
 
 const UpdateImage = ({route}) => {
   const [input, setInput] = useState('');
@@ -27,7 +28,7 @@ const UpdateImage = ({route}) => {
       SweetAlert.showAlertWithOptions({
         title: 'Image successfully updated!',
         style: 'success',
-    });
+      });
       console.log({response});
     } catch (error) {
       SweetAlert.showAlertWithOptions({
@@ -39,6 +40,7 @@ const UpdateImage = ({route}) => {
 
   return (
     <Background>
+      <Logo />
       <TextInput
         value={input}
         onChangeText={(text) => setInput(text)}

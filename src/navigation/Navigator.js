@@ -11,7 +11,6 @@ import UserImages from '../screens/UserImages';
 import Home from '../screens/Home';
 import Splash from '../screens/Splash';
 import Login from '../screens/Login';
-import Register from '../screens/Register';
 import ViewImages from '../screens/ViewImages';
 import UploadImages from '../screens/UploadImages';
 import UpdateImage from '../screens/UpdateImage';
@@ -99,7 +98,6 @@ const AuthStackScreen = () => (
       headerShown: false,
     }}>
     <AuthStack.Screen name="Login" component={Login} />
-    <AuthStack.Screen name="Register" component={Register} />
   </AuthStack.Navigator>
 );
 
@@ -200,10 +198,6 @@ const Navigator = () => {
       Login: (loginUser) => {
         setIsLoading(false);
         setUser(loginUser);
-      },
-      Register: () => {
-        setIsLoading(false);
-        setUser('asdf');
       },
       Logout: () => {
         setIsLoading(false);

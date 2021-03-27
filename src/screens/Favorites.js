@@ -124,7 +124,7 @@ const Favorites = ({route, navigation}) => {
   const imageFooter = () => {
     const iconType = modalImage[0].favorite ? 'ios-heart' : 'ios-heart-outline';
     return (
-      <Icon name={iconType} color="#fff" size={50} onPress={handleFavorites} />
+      <Icon name={iconType} color="#fff" size={30} onPress={handleFavorites} />
     );
   };
 

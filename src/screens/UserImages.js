@@ -16,6 +16,7 @@ import API from '../api/api';
 import {style} from '../styles/style';
 import Background from '../components/Background';
 import Button from '../components/Button';
+import Logo from '../components/Logo';
 import TextInput from '../components/TextInput';
 import SweetAlert from 'react-native-sweet-alert';
 
@@ -262,6 +263,7 @@ const UserImages = ({route, navigation}) => {
       </Modal>
       <Modal visible={showModal2} animationType={'fade'}>
         <Background>
+          <Logo />
           <TextInput
             value={input}
             onChangeText={(text) => setInput(text)}

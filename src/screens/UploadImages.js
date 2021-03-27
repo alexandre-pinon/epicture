@@ -1,17 +1,12 @@
 import React, {useState} from 'react';
-import {Text, View, TouchableHighlight} from 'react-native';
-import {ScreenContainer} from 'react-native-screens';
 import {launchImageLibrary} from 'react-native-image-picker';
 
 import API from '../api/api';
 
 import Background from '../components/Background';
-import Logo from '../components/Logo';
-import Header from '../components/Header';
 import Button from '../components/Button';
-import Paragraph from '../components/Paragraph';
+import Logo from '../components/Logo';
 import TextInput from '../components/TextInput';
-import {style} from '../styles/style';
 
 const UploadImages = ({route}) => {
   const [input, setInput] = useState('');
@@ -55,6 +50,7 @@ const UploadImages = ({route}) => {
 
   return (
     <Background>
+      <Logo />
       <TextInput
         value={input}
         onChangeText={(text) => setInput(text)}

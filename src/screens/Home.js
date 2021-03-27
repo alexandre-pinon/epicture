@@ -1,6 +1,5 @@
 import React, {useContext, useState, useEffect} from 'react';
 import {View, Text, TouchableHighlight, ScrollView} from 'react-native';
-import {ScreenContainer} from 'react-native-screens';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import Realm from 'realm';
@@ -8,10 +7,8 @@ import _ from 'lodash';
 
 import {AuthContext} from '../context/context';
 import Background from '../components/Background';
-import Logo from '../components/Logo';
 import Header from '../components/Header';
 import Button from '../components/Button';
-import Paragraph from '../components/Paragraph';
 import TextInput from '../components/TextInput';
 import {style} from '../styles/style';
 
