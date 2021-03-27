@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {launchImageLibrary} from 'react-native-image-picker';
+import SweetAlert from 'react-native-sweet-alert';
 
 import API from '../api/api';
 
@@ -40,10 +41,16 @@ const UploadImages = ({route}) => {
         data: formData,
       });
       setInput('');
-      alert('Image successfully uploaded!');
+      SweetAlert.showAlertWithOptions({
+        title: 'Image successfully uploaded!',
+        style: 'success',
+      });
       console.log({response});
     } catch (error) {
-      alert('Error uploading image!');
+      SweetAlert.showAlertWithOptions({
+        title: 'Error uploading image 😕',
+        style: 'error',
+      });
       console.log({error});
     }
   };

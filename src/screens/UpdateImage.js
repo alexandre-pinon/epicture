@@ -33,6 +33,7 @@ const UpdateImage = ({route}) => {
     } catch (error) {
       SweetAlert.showAlertWithOptions({
         title: 'Error updating image 😕',
+        style: 'error',
       });
       console.log({error});
     }
