@@ -21,17 +21,19 @@ $ npm run android
 <img src="https://i.imgur.com/omAHyPD.jpg" width="200" height="400"><br>
 
 ## Clicked on saved search:
-# ADD SRC TO IMG TAG
-<img src="" width="200" height="400"><br>
+<img src="https://i.imgur.com/FtbuVCx_d.webp?maxwidth=760&fidelity=grand" width="200" height="400"><br>
 
 ## Upload page:
-<img src="https://i.imgur.com/U75Bd66.jpg" width="200" height="400"><br>
+<img src="https://i.imgur.com/IrOpuDy_d.webp?maxwidth=760&fidelity=grand" width="200" height="400"><br>
 
 ## Uploaded images:
-<img src="https://i.imgur.com/S7nT97r.jpg" width="200" height="400"><br>
+<img src="https://i.imgur.com/vfSnAL9_d.webp?maxwidth=760&fidelity=grand" width="200" height="400"><br>
 
-## Clicked on uploaded image:
+## Clicked on uploaded images:
 <img src="https://i.imgur.com/lBXTMHc.jpg" width="200" height="400"><br>
 
+## Filter on uploaded images:
+<img src="https://i.imgur.com/GklJeOo.jpg" width="200" height="400"><br>
+
 ## Favorites:
-<img src="https://i.imgur.com/6uR6uir.jpg" width="200" height="400"><br>
+<img src="https://i.imgur.com/d7EKmFm_d.webp?maxwidth=760&fidelity=grand" width="200" height="400"><br>
